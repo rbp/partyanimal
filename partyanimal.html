@@ -8,20 +8,21 @@
                 margin: 0;
                 paddin: 0;
             }
-
             .partyanimalEnclosure {
-                margin-top: 50px;
-                margin-bottom: 0;
-                margin-left: auto;
-                margin-right: auto;
+                margin: 3em auto;
                 display: block;
-                width: 50%;
                 padding: 0;
                 text-align: center;
 
                 /* DEBUG */
                 /* background-color: blue;*/
             }
+            #partyanimal {
+                padding: 0;
+                margin: 0 auto;
+                display: block;
+            }
+
         </style>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="partyanimal-frames.js"></script>
@@ -29,13 +30,11 @@
     </head>
 
     <body>
-        <center>
-            <div class="partyanimalEnclosure">
-                <canvas id="partyanimal" width="640" height="500">
-                </canvas>
-                :partyanimal:
-            </div>
-        </center>
+        <div class="partyanimalEnclosure">
+            <canvas id="partyanimal" width="100" height="100">
+            </canvas>
+            :partyanimal:
+        </div>
         <script type="text/javascript">
             $(document).ready(function () {
                 window.partyanimal.setFrames(window.partyanimal_frames);
