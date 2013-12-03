@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>:partyanimal:</title>
+        <style>
+            body {
+                margin: 0;
+                paddin: 0;
+            }
+
+            .partyanimalEnclosure {
+                margin-top: 50px;
+                margin-bottom: 0;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                width: 50%;
+                padding: 0;
+                text-align: center;
+
+                /* DEBUG */
+                /* background-color: blue;*/
+            }
+        </style>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="partyanimal-pixels.js"></script>
+        <script src="partyanimal.js"></script>
+    </head>
+
+    <body>
+        <center>
+            <div class="partyanimalEnclosure">
+                <canvas id="partyanimal" width="640" height="500">
+                </canvas>
+                :partyanimal:
+            </div>
+        </center>
+        <script type="text/javascript">
+            $(document).ready(window.partyanimal.party("partyanimal"));
+        </script>
+    </body>
+</html>
+
