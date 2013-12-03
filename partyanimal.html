@@ -24,7 +24,7 @@
             }
         </style>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="partyanimal-pixels.js"></script>
+        <script src="partyanimal-frames.js"></script>
         <script src="partyanimal.js"></script>
     </head>
 
@@ -37,7 +37,10 @@
             </div>
         </center>
         <script type="text/javascript">
-            $(document).ready(window.partyanimal.party("partyanimal"));
+            $(document).ready(function () {
+                window.partyanimal.setFrames(window.partyanimal_frames);
+                window.partyanimal.party("partyanimal")
+            }());
         </script>
     </body>
 </html>
