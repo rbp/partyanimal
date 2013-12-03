@@ -4,8 +4,8 @@ window.partyanimal = function() {
     // Misnomer; this is the delay between frames
     var animSpeed = 150;
     var frameIdx;
-    var imgWidth;
-    var imgHeight;
+    var imgWidth = 64;
+    var imgHeight = 50;
     var ctx;
 
     function centerInCanvas(imgWidth, imgHeight, canvasWidth, canvasHeight) {
@@ -16,7 +16,7 @@ window.partyanimal = function() {
         var widthOverflow = canvasWidth - imgWidth;
         var heightOverflow = canvasHeight - imgHeight;
 
-        return (Math.floor(widthOverflow / 2), Math.floor(heightOverflow / 2));
+        return [Math.floor(widthOverflow / 2), Math.floor(heightOverflow / 2)];
     }
 
     function setFrames(frameList) {
@@ -53,15 +53,15 @@ window.partyanimal = function() {
         }
 
         clear();
-        var imageData = ctx.createImageData(64, 50);
         var frame = frames[frameIdx];
-        var pos = centerInCanvas(canvas.width, canvas.height);
+        var imageData = ctx.createImageData(imgWidth, imgHeight);
+        var pos = centerInCanvas(imgWidth, imgHeight, canvas.width, canvas.height);
         for (i = 0; i < frame.length; i++) {
             x = i % 64;
             y = Math.floor(i / 64);
             drawPixel(imageData, x, y, frame[i]);
         }
-        ctx.putImageData(imageData, 0, 0);
+        ctx.putImageData(imageData, pos[0], pos[1]);
         frameIdx = (frameIdx + 1) % 4;
     }
     
