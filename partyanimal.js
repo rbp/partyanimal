@@ -1,12 +1,23 @@
 window.partyanimal = function() {
     var canvas;
     var frames;
-    // Misnomer; this is the delay between frames
-    var animSpeed = 150;
+    var lastAnimTs;
+    var animDt = 170;
     var frameIdx;
     var imgWidth = 64;
     var imgHeight = 50;
     var ctx;
+
+    function setRequestAnimFrame() {
+        window.requestAnimFrame = (function() {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                function(callback) {
+                    window.setTimeout(callback, 5);
+                };
+        })();
+    }
 
     function centerInCanvas(imgWidth, imgHeight, canvasWidth, canvasHeight) {
         // Returns (x, y) where (imgWidth, imgHeight) can be drawn
@@ -35,12 +46,22 @@ window.partyanimal = function() {
         imageData.data[index + 2] = b;
         imageData.data[index + 3] = a;
     }
-    
-    function animate(canvas_el) {
+
+    function init(canvas_el) {
         canvas = document.getElementById(canvas_el);
         ctx = canvas.getContext("2d");
+        setRequestAnimFrame();
         frameIdx = 0;
-        return setInterval(draw, animSpeed);
+    }
+    
+    function animate(timestamp) {
+        requestAnimFrame(animate);
+        if (typeof timestamp == "undefined" ||
+            typeof lastAnimTs == "undefined" ||
+            (timestamp - lastAnimTs) >= animDt) {
+            lastAnimTs = timestamp;
+            draw();
+        }
     }
 
     function clear() {
@@ -67,7 +88,12 @@ window.partyanimal = function() {
     
 
     return {
-        party: animate,
+        init: init,
+        animate: animate,
+        party: function(el) {
+            init(el);
+            animate();
+        },
         setFrames: setFrames
     }
 }();
