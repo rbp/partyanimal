@@ -23,6 +23,11 @@
                 margin: 0 auto;
                 display: block;
             }
+            @supports (image-rendering: pixelated) {
+                #partyanimal {
+                    image-rendering: pixelated;
+                }
+            }
 
         </style>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
